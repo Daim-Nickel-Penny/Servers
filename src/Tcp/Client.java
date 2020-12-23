@@ -13,6 +13,11 @@ public class Client {
         PrintWriter out_socket=new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),true);
 
 
+        String message=in_socket.readLine();
+        System.out.println("Server Says: "+message);
+        out_socket.println("Thanks.");
+        socket.close();
+        System.out.println("Socket Closed.");
     }
 
 
