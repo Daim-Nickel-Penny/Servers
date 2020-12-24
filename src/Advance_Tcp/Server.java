@@ -20,9 +20,19 @@ public class Server {
         BufferedReader in_socket=new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out_socket=new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),true);
 
-        out_socket.println("Welcome");
+        String message;
+        int secret_number=(int)(Math.random()*10+1);
+        do {
+            out_socket.println("Enter the code [1-10]");
+            message=in_socket.readLine();
+        }while (!(Integer.parseInt(message)==secret_number));
+
+        out_socket.println("Code Matched!!");
+        System.out.println("Code is revealed. Exiting the App. ");
+
+        /*out_socket.println("Welcome");
         String message=in_socket.readLine();
-        System.out.println("Client Says: "+message);
+        System.out.println("Client Says: "+message);*/
 
         socket.close();
         System.out.println("Socket is closed.");
